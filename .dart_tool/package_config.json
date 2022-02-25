@@ -98,6 +98,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///Users/tong/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/tong/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
@@ -302,7 +308,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-02-22T07:51:28.701790Z",
+  "generated": "2022-02-24T10:00:25.601053Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

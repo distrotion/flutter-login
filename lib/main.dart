@@ -5,48 +5,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/Observe/appBlocObserver.dart';
 import 'bloc/Rebuild/cubit.dart';
+import 'mainBody.dart';
 
 //--------------------------------------
 
 void main() {
   BlocOverrides.runZoned(
-    () => runApp(MyApp()),
+    () => runApp(const MyApp()),
     blocObserver: AppBlocObserver(),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider<BlocPageRebuild>(
-            create: (BuildContext context) =>
-                BlocPageRebuild(), //For rebuild only page inside without app bar/left menu
-          ),
-        ],
-        child: BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: HomeScreen(),
-          );
-        }));
+    return MultiBlocProvider(providers: [
+      BlocProvider<BlocPageRebuild>(
+        create: (BuildContext context) =>
+            BlocPageRebuild(), //For rebuild only page inside without app bar/left menu
+      ),
+    ], child: const MainContext());
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainContext extends StatelessWidget {
+  const MainContext({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('APP BAR'),
-      ),
-      // body: MainTable(),
+    return BlocBuilder<BlocPageRebuild, bool>(
+      builder: (_, e) {
+        return MaterialApp(
+          title: 'Flutter Login',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: const MainBlocRebuild(),
+        );
+      },
     );
   }
 }

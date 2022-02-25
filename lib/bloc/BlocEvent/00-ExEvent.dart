@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 //-------------------------------------------------
@@ -9,8 +8,8 @@ class Example_Pressed_01 extends Example_Event {}
 
 class Example_Pressed_02 extends Example_Event {}
 
-class CallDropDownDataS_INCM_Bloc extends Bloc<Example_Event, int> {
-  CallDropDownDataS_INCM_Bloc() : super(0) {
+class Example_Bloc extends Bloc<Example_Event, int> {
+  Example_Bloc() : super(0) {
     on<Example_Pressed_01>((event, emit) {
       return _Example_Function_01(0, emit);
     });
