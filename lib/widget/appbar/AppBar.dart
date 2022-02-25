@@ -3,6 +3,9 @@ import 'package:intl/intl.dart';
 
 //--------------------------------------------- Bloc
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/BlocEvent/LoginEvent.dart';
+import '../../mainBody.dart';
 // import 'package:tpk_login_arsa_01/script/bloc/login/login_bloc.dart';
 // import 'package:tpk_login_arsa_01/script/bloc/login/login_event.dart';
 
@@ -142,7 +145,9 @@ class Icon_profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
-      onLongPress: () {},
+      onLongPress: () {
+        LoginContext.read<Login_Bloc>().add(Logout());
+      },
       child: Container(
           width: 24,
           height: 24,

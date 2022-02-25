@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 //--------------------------------------------- Bloc
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../bloc/BlocEvent/LoginEvent.dart';
+import '../mainBody.dart';
+
+class LoginPageWidget extends StatelessWidget {
+  const LoginPageWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +124,7 @@ class _LoginSignin extends StatelessWidget {
     return InkWell(
         onTap: () {
           // BlocProvider.of<SwPageCubit>(context).togglePage("Page1");
+          LoginContext.read<Login_Bloc>().add(LoginPage());
         },
         child: Container(
           height: 40,

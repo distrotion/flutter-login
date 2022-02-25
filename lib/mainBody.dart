@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/BlocEvent/ChangePage.dart';
+import 'bloc/BlocEvent/LoginEvent.dart';
 import 'bloc/Rebuild/cubit.dart';
 import 'data/global.dart';
 import 'page/loginpage.dart';
@@ -10,6 +12,7 @@ import 'widget/menu/mainmenu.dart';
 //-------------------------------------
 
 late BuildContext MainBodyContext;
+late BuildContext LoginContext;
 
 class MainBlocRebuild extends StatelessWidget {
   const MainBlocRebuild({Key? key}) : super(key: key);
@@ -17,23 +20,46 @@ class MainBlocRebuild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
-      return pre_login();
+      return BlocProvider(
+          create: (_) => Login_Bloc(),
+          child: BlocBuilder<Login_Bloc, String>(
+            builder: (context, tokenin) {
+              return pre_login();
+            },
+          ));
     });
   }
 }
 
-class pre_login extends StatelessWidget {
+class pre_login extends StatefulWidget {
   const pre_login({Key? key}) : super(key: key);
 
   @override
+  State<pre_login> createState() => _pre_loginState();
+}
+
+class _pre_loginState extends State<pre_login> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<Login_Bloc>().add(ReLogin());
+    print("initState");
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return token == ''
-        ? MainBody(
-            page: Container(
-              color: Colors.blue,
-            ),
-          )
-        : Loginbody();
+    LoginContext = context;
+    if (token != '') {
+      return BlocProvider(
+          create: (_) => ChangePage_Bloc(),
+          child: BlocBuilder<ChangePage_Bloc, Widget>(
+            builder: (context, page) {
+              return MainBody(page: page);
+            },
+          ));
+    } else {
+      return const Loginbody();
+    }
   }
 }
 
@@ -59,6 +85,6 @@ class Loginbody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return LoginPageWidget();
   }
 }

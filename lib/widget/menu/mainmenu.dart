@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tpk_login_v2/widget/menu/sub_widget.dart';
 
+import '../../page/page1.dart';
+import '../../page/page2.dart';
+import '../../page/page3.dart';
+import '../../page/page4.dart';
+import '../../page/page5.dart';
+
 class MainMenu extends StatefulWidget {
   MainMenu({Key? key}) : super(key: key);
 
@@ -65,23 +71,23 @@ class Data_Menu_mainmenu extends StatelessWidget {
                   ))),
           new menu_normal(
             name: "Page1",
-            page: 'Page1',
+            page: Page1(),
           ),
           new menu_normal(
             name: "Page2",
-            page: 'Page2',
+            page: Page2(),
           ),
           new menu_normal(
             name: "Page3",
-            page: 'Page3',
+            page: Page3(),
           ),
           new menu_normal(
             name: "Page4",
-            page: 'Page4',
+            page: Page4(),
           ),
           new menu_normal(
             name: "Page5",
-            page: 'Page5',
+            page: Page5(),
           ),
           Divider(
             color: Color(0x4dffffff),

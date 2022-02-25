@@ -1,6 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../data/global.dart';
 
 //-------------------------------------------------
+
+Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+late Future<String> tokenSP;
 
 abstract class LoginEvent {}
 
@@ -22,15 +28,32 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
       return _Logout_Function(state, emit);
     });
   }
+
   Future<void> _LoginPage_Function(String toAdd, Emitter<String> emit) async {
-    emit('');
+    final SharedPreferences prefs = await _prefs;
+    // token = (prefs.getString('token') ?? '');
+    token = 'hi';
+
+    tokenSP = prefs.setString("tokenSP", token).then((bool success) {
+      return state;
+    });
+
+    emit(token);
   }
 
   Future<void> _ReLogin_Function(String toAdd, Emitter<String> emit) async {
-    emit('');
+    final SharedPreferences prefs = await _prefs;
+    token = (prefs.getString('tokenSP') ?? '');
+    emit(token);
   }
 
   Future<void> _Logout_Function(String toAdd, Emitter<String> emit) async {
+    final SharedPreferences prefs = await _prefs;
+    token = '';
+
+    tokenSP = prefs.setString("tokenSP", token).then((bool success) {
+      return state;
+    });
     emit('');
   }
 }
