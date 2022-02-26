@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //---------------------------------------------------------
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/BlocEvent/NotificationEvent.dart';
+import '../bloc/cubit/NotificationEvent.dart';
 import 'page0.dart';
 import '../data/global.dart';
 

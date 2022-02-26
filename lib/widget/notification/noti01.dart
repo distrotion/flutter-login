@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/BlocEvent/NotificationEvent.dart';
+import '../../bloc/cubit/NotificationEvent.dart';
 
 //!Bloc provider and builder
 class BlocBuilderNotification extends StatelessWidget {

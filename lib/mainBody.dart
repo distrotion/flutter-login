@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/BlocEvent/ChangePageEvent.dart';
 import 'bloc/BlocEvent/LoginEvent.dart';
-import 'bloc/BlocEvent/NotificationEvent.dart';
-import 'bloc/Rebuild/cubit.dart';
+import 'bloc/cubit/NotificationEvent.dart';
+import 'bloc/cubit/Rebuild.dart';
 import 'data/global.dart';
 import 'page/loginpage.dart';
 import 'widget/appbar/AppBar.dart';

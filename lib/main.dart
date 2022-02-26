@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //--------------------------------------
 
 import 'bloc/Observe/appBlocObserver.dart';
-import 'bloc/Rebuild/cubit.dart';
+import 'bloc/cubit/Rebuild.dart';
 import 'mainBody.dart';
 
 //--------------------------------------
