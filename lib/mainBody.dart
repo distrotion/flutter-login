@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/BlocEvent/ChangePage.dart';
+import 'bloc/BlocEvent/ChangePageEvent.dart';
 import 'bloc/BlocEvent/LoginEvent.dart';
+import 'bloc/BlocEvent/NotificationEvent.dart';
 import 'bloc/Rebuild/cubit.dart';
 import 'data/global.dart';
 import 'page/loginpage.dart';
 import 'widget/appbar/AppBar.dart';
 import 'widget/menu/mainmenu.dart';
+import 'widget/notification/noti01.dart';
 
 //-------------------------------------
 
@@ -24,7 +26,24 @@ class MainBlocRebuild extends StatelessWidget {
           create: (_) => Login_Bloc(),
           child: BlocBuilder<Login_Bloc, String>(
             builder: (context, tokenin) {
-              return pre_login();
+              return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
+                return BlocProvider(
+                    create: (_) => BlocNotification(),
+                    child: BlocBuilder<BlocNotification, NotificationState>(
+                      builder: (context, notification) {
+                        contextGB = context;
+                        return Stack(
+                          children: [
+                            pre_login(),
+                            Positioned(
+                                top: 64,
+                                right: 24,
+                                child: BlocBuilderNotification()),
+                          ],
+                        );
+                      },
+                    ));
+              });
             },
           ));
     });

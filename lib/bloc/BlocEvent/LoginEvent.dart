@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/global.dart';
+import 'NotificationEvent.dart';
 
 //-------------------------------------------------
 
@@ -33,10 +34,19 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
     final SharedPreferences prefs = await _prefs;
     // token = (prefs.getString('token') ?? '');
     token = 'hi';
+    UserLV = 2;
 
     tokenSP = prefs.setString("tokenSP", token).then((bool success) {
       return state;
     });
+
+    if (token != '') {
+      BlocProvider.of<BlocNotification>(contextGB)
+          .UpdateNotification("", "Login OK", enumNotificationlist.Success);
+    }
+
+    // BlocProvider.of<Notification_Bloc>(contextGB)
+    //   .UpdateNotification("", "Login OK", enumNotificationlist.Success);
 
     emit(token);
   }
@@ -44,16 +54,24 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
   Future<void> _ReLogin_Function(String toAdd, Emitter<String> emit) async {
     final SharedPreferences prefs = await _prefs;
     token = (prefs.getString('tokenSP') ?? '');
+    UserLV = 2;
     emit(token);
   }
 
   Future<void> _Logout_Function(String toAdd, Emitter<String> emit) async {
     final SharedPreferences prefs = await _prefs;
     token = '';
+    UserLV = 0;
 
     tokenSP = prefs.setString("tokenSP", token).then((bool success) {
       return state;
     });
+
+    if (token == '') {
+      BlocProvider.of<BlocNotification>(contextGB)
+          .UpdateNotification("", "Logout", enumNotificationlist.Success);
+    }
+
     emit('');
   }
 }
