@@ -3,6 +3,7 @@ import '../page/page0.dart';
 
 String token = '';
 Widget CuPage = const Page0();
+int CuPageLV = 0;
 int UserLV = 0;
 
 class PageLevel {

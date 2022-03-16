@@ -62,7 +62,7 @@ class _pre_loginState extends State<pre_login> {
   void initState() {
     super.initState();
     context.read<Login_Bloc>().add(ReLogin());
-    print("initState");
+    // print("initState");
   }
 
   @override
@@ -89,6 +89,7 @@ class MainBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MainBodyContext = context;
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF0b1327),

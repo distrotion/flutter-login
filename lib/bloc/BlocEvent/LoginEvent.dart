@@ -33,7 +33,7 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
   Future<void> _LoginPage_Function(String toAdd, Emitter<String> emit) async {
     final SharedPreferences prefs = await _prefs;
     // token = (prefs.getString('token') ?? '');
-    token = 'hi';
+    token = 'test';
     UserLV = 2;
 
     tokenSP = prefs.setString("tokenSP", token).then((bool success) {
@@ -41,8 +41,11 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
     });
 
     if (token != '') {
-      BlocProvider.of<BlocNotification>(contextGB)
-          .UpdateNotification("", "Login OK", enumNotificationlist.Success);
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+          "Success", "Login OK", enumNotificationlist.Success);
+    } else {
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification("Error",
+          "user or password have some problem", enumNotificationlist.Error);
     }
 
     // BlocProvider.of<Notification_Bloc>(contextGB)

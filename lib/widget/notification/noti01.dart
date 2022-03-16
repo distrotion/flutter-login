@@ -39,7 +39,7 @@ class _ComNotificationState extends State<ComNotification> {
     int i = 0;
     TapClose() {
       _showItem.clear();
-      print(_showItem);
+      // print(_showItem);
       BlocProvider.of<BlocNotification>(context)
           .UpdateNotification("", "", enumNotificationlist.none);
     }
@@ -130,7 +130,7 @@ class _ComNotificationState extends State<ComNotification> {
         boxcolor = Colors.transparent;
       });
     }
-    print(_showItem);
+    // print(_showItem);
     return Container(
       height: loginHeight, // 400,
       width: loginWidth * _showItem.length, // 400,

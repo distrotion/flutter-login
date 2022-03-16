@@ -6,11 +6,13 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 
 class menu_normal extends StatelessWidget {
-  menu_normal({Key? key, this.name, this.icon, required this.page})
+  menu_normal(
+      {Key? key, this.name, this.icon, required this.page, required this.Lv})
       : super(key: key);
   String? name;
   Widget page;
   String? icon;
+  int Lv;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class menu_normal extends StatelessWidget {
       onTap: () {
         // BlocProvider.of<SwPageCubit>(context).togglePage(page);
         CuPage = page;
+        CuPageLV = Lv;
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage());
       },
       child: Container(

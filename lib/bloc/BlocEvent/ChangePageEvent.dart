@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
+import '../../mainBody.dart';
 import '../../page/page0.dart';
+import '../../widget/menu/mainmenu.dart';
+import '../Cubit/NotificationEvent.dart';
 
 //-------------------------------------------------
 
@@ -17,32 +20,22 @@ class ChangePage_Bloc extends Bloc<ChangePage_Event, Widget> {
     });
   }
   Future<void> _ChangePage_Function(Widget toAdd, Emitter<Widget> emit) async {
-    print('${CuPage}');
+    // print('${CuPage}');
 
     Widget output = Page0();
+    // MainBodyContext
+    // MenuContext
 
-    if (('${CuPage}' == 'Page1') && (UserLV >= PageLevel.page01)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page2') && (UserLV >= PageLevel.page02)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page3') && (UserLV >= PageLevel.page03)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page4') && (UserLV >= PageLevel.page04)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page5') && (UserLV >= PageLevel.page05)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page6') && (UserLV >= PageLevel.page06)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page7') && (UserLV >= PageLevel.page07)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page8') && (UserLV >= PageLevel.page08)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page9') && (UserLV >= PageLevel.page09)) {
-      output = CuPage;
-    } else if (('${CuPage}' == 'Page10') && (UserLV >= PageLevel.page10)) {
-      output = CuPage;
+    if (UserLV >= CuPageLV) {
+    } else {
+      CuPage = Page0();
     }
 
-    emit(output);
+    //   // BlocProvider.of<BlocNotification>(contextGB)
+    //   //     .UpdateNotification("", "Error", enumNotificationlist.Error);
+
+    Navigator.pop(MenuContext);
+    // print(output);
+    emit(CuPage);
   }
 }

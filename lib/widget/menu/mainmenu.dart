@@ -7,6 +7,8 @@ import '../../page/page3.dart';
 import '../../page/page4.dart';
 import '../../page/page5.dart';
 
+late BuildContext MenuContext;
+
 class MainMenu extends StatefulWidget {
   MainMenu({Key? key}) : super(key: key);
 
@@ -17,6 +19,7 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
+    MenuContext = context;
     //---------------------------------------------------------------
 
     return Container(
@@ -72,22 +75,27 @@ class Data_Menu_mainmenu extends StatelessWidget {
           new menu_normal(
             name: "Page1",
             page: Page1(),
+            Lv: 1,
           ),
           new menu_normal(
             name: "Page2",
             page: Page2(),
+            Lv: 1,
           ),
           new menu_normal(
             name: "Page3",
             page: Page3(),
+            Lv: 1,
           ),
           new menu_normal(
             name: "Page4",
             page: Page4(),
+            Lv: 1,
           ),
           new menu_normal(
             name: "Page5",
             page: Page5(),
+            Lv: 5,
           ),
           Divider(
             color: Color(0x4dffffff),
