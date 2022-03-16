@@ -12,22 +12,18 @@ void onLoadingType01(BuildContext contextin, void newValue, void newValue2) {
     barrierDismissible: false,
     builder: (BuildContext context) {
       newValue;
-      return Container(
-        // color: Colors.red,
-
-        child: Dialog(
-          child: Container(
-              height: 75,
-              child: new Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(width: 30),
-                  new CircularProgressIndicator(),
-                  SizedBox(width: 20),
-                  new Text("Loading"),
-                ],
-              )),
-        ),
+      return Dialog(
+        child: SizedBox(
+            height: 75,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                SizedBox(width: 30),
+                CircularProgressIndicator(),
+                SizedBox(width: 20),
+                Text("Loading"),
+              ],
+            )),
       );
     },
   );
@@ -46,22 +42,18 @@ void onLoadingType01_long5(
     barrierDismissible: false,
     builder: (BuildContext context) {
       newValue;
-      return Container(
-        // color: Colors.red,
-
-        child: Dialog(
-          child: Container(
-              height: 75,
-              child: new Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(width: 30),
-                  new CircularProgressIndicator(),
-                  SizedBox(width: 20),
-                  new Text("Loading"),
-                ],
-              )),
-        ),
+      return Dialog(
+        child: SizedBox(
+            height: 75,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                SizedBox(width: 30),
+                CircularProgressIndicator(),
+                SizedBox(width: 20),
+                Text("Loading"),
+              ],
+            )),
       );
     },
   );

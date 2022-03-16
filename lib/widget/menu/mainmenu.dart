@@ -25,7 +25,7 @@ class _MainMenuState extends State<MainMenu> {
     return Container(
       height: (MediaQuery.of(context).size.height),
       width: 200,
-      color: Color(0xff0b1327),
+      color: const Color(0xff0b1327),
       //color: Colors.red,
       child: ListView(
         children: [
@@ -43,66 +43,63 @@ class Data_Menu_mainmenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.red,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, //Axis-Y
-        crossAxisAlignment: CrossAxisAlignment.center, //Axis-X
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center, //Axis-Y
+      crossAxisAlignment: CrossAxisAlignment.center, //Axis-X
 
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Align(
-              alignment: Alignment.center,
-              child: Container(
-                  height: 40,
-                  width: 180,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.all(1),
-                    child: Container(
-                      height: 35,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/logo_tpk.png"),
-                          fit: BoxFit.fitHeight,
-                        ),
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Align(
+            alignment: Alignment.center,
+            child: Container(
+                height: 40,
+                width: 180,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.all(1),
+                  child: Container(
+                    height: 35,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/logo_tpk.png"),
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
-                  ))),
-          new menu_normal(
-            name: "Page1",
-            page: Page1(),
-            Lv: 1,
-          ),
-          new menu_normal(
-            name: "Page2",
-            page: Page2(),
-            Lv: 1,
-          ),
-          new menu_normal(
-            name: "Page3",
-            page: Page3(),
-            Lv: 1,
-          ),
-          new menu_normal(
-            name: "Page4",
-            page: Page4(),
-            Lv: 1,
-          ),
-          new menu_normal(
-            name: "Page5",
-            page: Page5(),
-            Lv: 5,
-          ),
-          Divider(
-            color: Color(0x4dffffff),
-            height: 12,
-          ),
-        ],
-      ),
+                  ),
+                ))),
+        menu_normal(
+          name: "Page1",
+          page: Page1(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Page2",
+          page: Page2(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Page3",
+          page: Page3(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Page4",
+          page: Page4(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Page5",
+          page: Page5(),
+          Lv: 5,
+        ),
+        const Divider(
+          color: Color(0x4dffffff),
+          height: 12,
+        ),
+      ],
     );
   }
 }
@@ -121,7 +118,7 @@ class Logomenu extends StatelessWidget {
         padding: const EdgeInsetsDirectional.all(1),
         child: Container(
           height: 35,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
               image: AssetImage("assets/images/logo_tpk.png"),
