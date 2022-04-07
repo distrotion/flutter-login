@@ -253,7 +253,8 @@ class _ComInputTextState extends State<ComInputText> {
       bool _isEnabled = widget.isEnabled ?? true;
 
       return Container(
-        height: 36,
+        color: _isEnabled ? Colors.white : Colors.grey,
+        height: 40,
         child: TextFormField(
           controller: _controller,
           // onChanged:
