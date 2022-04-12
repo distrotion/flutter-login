@@ -41,6 +41,8 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
       decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
       child: DropdownButton<String>(
         // borderRadius: BorderRadius.all(Radius.circular(10)),
+        // disabledHint: Text("123"),
+
         value: selectedValue,
         isExpanded: true,
         // iconDisabledColor: Colors.transparent,
@@ -48,6 +50,10 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
         // icon: const Icon(Icons.arrow_downward),
         // iconSize: 24,
         // elevation: 16,
+        disabledHint: Text(
+            menuItems.firstWhere((item) => item.value == selectedValue).value ??
+                ""),
+
         style: const TextStyle(color: Colors.black),
         underline: Container(
           height: 2,
@@ -83,14 +89,12 @@ class AdvanceDropDownOB {
 //   return menuItems;
 // }
 
-
-
-          // Container(
-          //   // color: Colors.red,
-          //   height: 24,
-          //   width: 24,
-          //   child: Padding(
-          //     padding: EdgeInsetsDirectional.all(1),
-          //     child: const Icon(Icons.arrow_downward),
-          //   ),
-          // ),
+// Container(
+//   // color: Colors.red,
+//   height: 24,
+//   width: 24,
+//   child: Padding(
+//     padding: EdgeInsetsDirectional.all(1),
+//     child: const Icon(Icons.arrow_downward),
+//   ),
+// ),
