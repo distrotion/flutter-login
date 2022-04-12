@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/cubit/NotificationEvent.dart';
+import '../widget/common/ComInputText.dart';
 import 'page0.dart';
 import '../data/global.dart';
 
 //---------------------------------------------------------
+
+bool iscontext = false;
+String dataSTR01 = '';
 
 class Page1 extends StatelessWidget {
   const Page1({Key? key}) : super(key: key);
@@ -18,12 +22,58 @@ class Page1 extends StatelessWidget {
   }
 }
 
-class Page1Body extends StatelessWidget {
+class Page1Body extends StatefulWidget {
   const Page1Body({Key? key}) : super(key: key);
 
   @override
+  State<Page1Body> createState() => _Page1BodyState();
+}
+
+class _Page1BodyState extends State<Page1Body> {
+  @override
   Widget build(BuildContext context) {
-    return testbody();
+    return Center(
+      child: Container(
+        height: 40,
+        width: 500,
+        // color: Colors.blue,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ComInputText(
+              height: 40,
+              isContr: iscontext,
+              fnContr: (input) {
+                setState(() {
+                  iscontext = input;
+                });
+              },
+              sValue: dataSTR01,
+              returnfunc: (String s) {
+                dataSTR01 = s;
+              },
+            ),
+            Container(
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {
+                  // print(dataSTR01);
+
+                  setState(() {
+                    iscontext = true;
+                    dataSTR01 = '';
+                    //
+                  });
+                  // iscontext = false;
+                },
+                child: Text(dataSTR01),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -89,7 +139,6 @@ class _testbodyState extends State<testbody> {
     );
   }
 }
-
 
 //BlocProvider.of<SwPageCubit>(context).togglePage(page);
 // BlocPageRebuild blocPageRebuild = BlocProvider.of<BlocPageRebuild>(context).rebuildPage();

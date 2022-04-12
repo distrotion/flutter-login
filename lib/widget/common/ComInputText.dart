@@ -36,8 +36,12 @@ class ComInputText extends StatefulWidget {
     this.isForceShowError = false,
     this.sAutofillHints,
     this.isEnabled,
-    this.isContr,
+    required this.isContr,
     this.fnContr,
+    this.height,
+    this.width,
+    this.iconheight,
+    this.iconwidth,
     required this.returnfunc,
   }) : super(key: key);
 
@@ -63,6 +67,10 @@ class ComInputText extends StatefulWidget {
   Function returnfunc;
 
   final bool? isContr;
+  final double? height;
+  final double? width;
+  final double? iconheight;
+  final double? iconwidth;
 
   //state
   final enumInputTextStateList InputTextState;
@@ -208,8 +216,8 @@ class _ComInputTextState extends State<ComInputText> {
             padding: const EdgeInsets.only(
                 right: 12.0, left: 12, top: 8.0, bottom: 8.0),
             child: Container(
-                height: 24,
-                width: 24,
+                height: widget.iconheight ?? 24,
+                width: widget.iconwidth ?? 24,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(getShowHidePassword_ImgPath()),
@@ -254,7 +262,8 @@ class _ComInputTextState extends State<ComInputText> {
 
       return Container(
         color: _isEnabled ? Colors.white : Colors.grey,
-        height: 40,
+        height: widget.height ?? 32,
+        width: widget.width ?? 100,
         child: TextFormField(
           controller: _controller,
           // onChanged:
@@ -284,7 +293,7 @@ class _ComInputTextState extends State<ComInputText> {
             hintStyle: TxtStyle(
                 fontSize: widget.nFontSize,
                 color: CustomTheme.colorGreyDisable),
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
                 // borderRadius:
                 //     const BorderRadius.all(const Radius.circular(8.0))
                 ),
@@ -315,7 +324,7 @@ class _ComInputTextState extends State<ComInputText> {
 
     Widget wInputReadOnly(Color cBg, Color cBorder) {
       return Container(
-        height: 36,
+        height: widget.height ?? 32,
         decoration: BoxDecoration(
           color: cBg,
           // borderRadius: BorderRadius.circular(8),
@@ -332,7 +341,7 @@ class _ComInputTextState extends State<ComInputText> {
                     fontSize: widget.nFontSize, color: CustomTheme.colorDark),
               ),
               if (widget.isShowDropdownIcon)
-                Container(
+                SizedBox(
                     width: 16,
                     child: Image.asset('assets/icons/icon-down@3x.png')),
             ],
@@ -343,7 +352,7 @@ class _ComInputTextState extends State<ComInputText> {
 
     Widget wInputDisable(Color cBg) {
       return Container(
-        height: 36,
+        height: widget.height ?? 24,
         decoration: BoxDecoration(
           color: cBg,
           // borderRadius: BorderRadius.circular(8),
@@ -366,11 +375,11 @@ class _ComInputTextState extends State<ComInputText> {
     //--------------------------------------------------------------------------------------
     //Body
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      if (widget.sLabel.isNotEmpty) ComSpaceHeight(nHeight: 8),
+      if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 8),
       if (widget.sLabel.isNotEmpty)
-        new Text(widget.sLabel,
+        Text(widget.sLabel,
             style: TxtStyle(color: CustomTheme.colorGrey, fontSize: 10)),
-      if (widget.sLabel.isNotEmpty) ComSpaceHeight(nHeight: 4),
+      if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 4),
       if (widget.InputTextState == enumInputTextStateList.inputText)
         wInputText(), //inputText, can show error
       if (widget.InputTextState == enumInputTextStateList.readOnly)
