@@ -22,19 +22,35 @@ class Page1 extends StatelessWidget {
   }
 }
 
-class Page1Body extends StatefulWidget {
+class Page1Body extends StatelessWidget {
   const Page1Body({Key? key}) : super(key: key);
 
-  @override
-  State<Page1Body> createState() => _Page1BodyState();
-}
-
-class _Page1BodyState extends State<Page1Body> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 40,
+        height: 100,
+        width: 100,
+        color: Colors.blue,
+        child: const Text("PAGE 1"),
+      ),
+    );
+  }
+}
+
+class Page1BodyT2 extends StatefulWidget {
+  const Page1BodyT2({Key? key}) : super(key: key);
+
+  @override
+  State<Page1BodyT2> createState() => _Page1BodyT2State();
+}
+
+class _Page1BodyT2State extends State<Page1BodyT2> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 64,
         width: 500,
         // color: Colors.blue,
         child: Row(
@@ -42,6 +58,7 @@ class _Page1BodyState extends State<Page1Body> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ComInputText(
+              sLabel: "test",
               height: 40,
               isContr: iscontext,
               fnContr: (input) {
@@ -54,20 +71,23 @@ class _Page1BodyState extends State<Page1Body> {
                 dataSTR01 = s;
               },
             ),
-            Container(
-              height: 40,
-              child: ElevatedButton(
-                onPressed: () {
-                  // print(dataSTR01);
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // print(dataSTR01);
 
-                  setState(() {
-                    iscontext = true;
-                    dataSTR01 = '';
-                    //
-                  });
-                  // iscontext = false;
-                },
-                child: Text(dataSTR01),
+                    setState(() {
+                      iscontext = true;
+                      dataSTR01 = '';
+                      //
+                    });
+                    // iscontext = false;
+                  },
+                  child: Text(dataSTR01),
+                ),
               ),
             )
           ],

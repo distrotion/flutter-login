@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/BlocEvent/LoginEvent.dart';
+import '../../mainBody.dart';
 import '../../page/page1.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
@@ -95,6 +98,9 @@ class Data_Menu_mainmenu extends StatelessWidget {
           page: Page5(),
           Lv: 5,
         ),
+        menu_logout(
+          name: "Logout",
+        ),
         const Divider(
           color: Color(0x4dffffff),
           height: 12,
@@ -129,6 +135,72 @@ class Logomenu extends StatelessWidget {
       ),
 
       //color: Colors.white,
+    );
+  }
+}
+
+class menu_logout extends StatelessWidget {
+  menu_logout({Key? key, this.name}) : super(key: key);
+  String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    String _name = name ?? "";
+
+    return InkWell(
+      onTap: () {
+        LoginContext.read<Login_Bloc>().add(Logout());
+        // BlocProvider.of<SwPageCubit>(context).togglePage(page);
+        // CuPage = page;
+        // CuPageLV = Lv;
+        // MainBodyContext.read<ChangePage_Bloc>().add(ChangePage());
+      },
+      child: Container(
+        //color: Colors.blue,
+        height: 50,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 15,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                height: 24,
+                width: 24,
+                child: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                  // size: 30.0,
+                ),
+                // decoration: BoxDecoration(
+                //   color: Colors.redAccent.shade400,
+
+                //   // image: DecorationImage(
+                //   //   image: AssetImage(""),
+                //   //   fit: BoxFit.fitWidth,
+                //   // ),
+                //   //borderRadius: BorderRadius.all(Radius.circular(24.0)),
+                // ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "   " + _name,
+                style: const TextStyle(
+                  fontFamily: 'Mitr',
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  fontStyle: FontStyle.normal,
+                  letterSpacing: 0,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

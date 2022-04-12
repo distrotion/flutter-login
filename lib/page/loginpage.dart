@@ -132,7 +132,7 @@ class _LoginSignin extends StatelessWidget {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Align(
+          child: const Align(
             alignment: Alignment.center,
             child: Text(
               "Sign IN",
