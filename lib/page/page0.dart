@@ -35,14 +35,19 @@ class testbutton extends StatefulWidget {
 }
 
 class _testbuttonState extends State<testbutton> {
-  String test01 = '';
+  String test01 = '1';
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
         height: 40,
         child: AdvanceDropDown(
-          listdropdown: [AdvanceDropDownOB(text: "text", value: "value")],
+          listdropdown: const [
+            MapEntry("", ""),
+            MapEntry("ONE", "1"),
+            MapEntry("TWO", "2"),
+            MapEntry("THREE", "3"),
+          ],
           onChangeinside: (d) {
             setState(() {
               test01 = d;

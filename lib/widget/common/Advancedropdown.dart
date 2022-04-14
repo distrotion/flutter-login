@@ -9,7 +9,7 @@ class AdvanceDropDown extends StatefulWidget {
     required this.width,
     required this.height,
   }) : super(key: key);
-  List<AdvanceDropDownOB>? listdropdown;
+  List<MapEntry<String, String>>? listdropdown;
   Function onChangeinside;
   String value;
   double width;
@@ -20,20 +20,15 @@ class AdvanceDropDown extends StatefulWidget {
 }
 
 class _AdvanceDropDownState extends State<AdvanceDropDown> {
-  String selectedValue = "";
   @override
   Widget build(BuildContext context) {
-    List<AdvanceDropDownOB> _listdropdown = widget.listdropdown ?? [];
+    List<MapEntry<String, String>> _listdropdown =
+        widget.listdropdown ?? [MapEntry("", "")];
 
     //AdvanceDropDownOB(text: "DYNAMIC", value: "DYNAMIC-V")
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(child: Text(""), value: "")
     ];
-
-    for (int i = 0; i < _listdropdown.length; i++) {
-      menuItems.add(DropdownMenuItem(
-          child: Text(_listdropdown[i].text), value: _listdropdown[i].value));
-    }
 
     return Container(
       width: widget.width,
@@ -43,16 +38,13 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
         // borderRadius: BorderRadius.all(Radius.circular(10)),
         // disabledHint: Text("123"),
 
-        value: selectedValue,
+        value: widget.value,
         isExpanded: true,
         // iconDisabledColor: Colors.transparent,
         // iconEnabledColor: Colors.transparent,
         // icon: const Icon(Icons.arrow_downward),
         // iconSize: 24,
         // elevation: 16,
-        disabledHint: Text(
-            menuItems.firstWhere((item) => item.value == selectedValue).value ??
-                ""),
 
         style: const TextStyle(color: Colors.black),
         underline: Container(
@@ -62,39 +54,24 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
         onChanged: (String? newValue) {
           setState(() {
             widget.onChangeinside(newValue!);
+            widget.value = newValue;
           });
         },
-        items: menuItems,
+        items: [
+          for (int i = 0; i < _listdropdown.length; i++)
+            DropdownMenuItem(
+              value: _listdropdown[i].value,
+              child: Text(_listdropdown[i].key.toString()),
+            )
+        ],
       ),
     );
   }
 }
 
-class AdvanceDropDownOB {
-  AdvanceDropDownOB({required this.text, required this.value});
-  String text;
-  String value;
 
-  bool selected = false;
-}
-
-// List<DropdownMenuItem<String>> get dropdownItems {
-//   List<DropdownMenuItem<String>> menuItems = [
-//     DropdownMenuItem(child: Text(""), value: ""),
-//     DropdownMenuItem(child: Text("USA-T"), value: "USA"),
-//     DropdownMenuItem(child: Text("Canada-T"), value: "Canada"),
-//     DropdownMenuItem(child: Text("Brazil-T"), value: "Brazil"),
-//     DropdownMenuItem(child: Text("England-T"), value: "England"),
-//   ];
-//   return menuItems;
-// }
-
-// Container(
-//   // color: Colors.red,
-//   height: 24,
-//   width: 24,
-//   child: Padding(
-//     padding: EdgeInsetsDirectional.all(1),
-//     child: const Icon(Icons.arrow_downward),
-//   ),
-// ),
+// for (MapEntry<String, String> e in widget.listdropdown!.entries)
+//             DropdownMenuItem(
+//               value: e.value,
+//               child: Text(e.key.toString()),
+//             )
