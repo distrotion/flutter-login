@@ -285,7 +285,8 @@ class _ComInputTextState extends State<ComInputText> {
           style: TxtStyle(fontSize: widget.nFontSize),
           inputFormatters: [
             LengthLimitingTextInputFormatter(widget.nLimitedChar),
-            if (_isEnabled == false) FilteringTextInputFormatter.digitsOnly,
+            if (widget.isNumberOnly == true)
+              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
           ],
           decoration: InputDecoration(
             hintText: widget.sPlaceholder,
