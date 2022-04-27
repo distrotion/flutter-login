@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'page0.dart';
-import '../data/global.dart';
-import 'dart:async';
 
 class Page3 extends StatelessWidget {
   const Page3({Key? key}) : super(key: key);
