@@ -215,12 +215,13 @@ class _ComInputTextState extends State<ComInputText> {
             padding: const EdgeInsets.only(
                 right: 12.0, left: 12, top: 8.0, bottom: 8.0),
             child: Container(
-                height: widget.iconheight ?? 24,
-                width: widget.iconwidth ?? 24,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(getShowHidePassword_ImgPath()),
-                        fit: BoxFit.fitHeight))),
+              height: widget.iconheight ?? 24,
+              width: widget.iconwidth ?? 24,
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage(getShowHidePassword_ImgPath()),
+              //         fit: BoxFit.fitHeight)),
+            ),
           ),
         );
         /*} else if (widget.isEmail && !_isHideIconOnFocus) {
