@@ -4,6 +4,7 @@ import '../widget/common/Advancedropdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/cubit/NotificationEvent.dart';
+import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
 import 'page0.dart';
 import '../data/global.dart';
@@ -196,6 +197,27 @@ class _timmerTESTState extends State<timmerTEST> {
         color: Colors.green,
         child: Text('${tic}'),
       ),
+    );
+  }
+}
+
+class CheckBoxTEST extends StatefulWidget {
+  const CheckBoxTEST({Key? key}) : super(key: key);
+
+  @override
+  State<CheckBoxTEST> createState() => _CheckBoxTESTState();
+}
+
+class _CheckBoxTESTState extends State<CheckBoxTEST> {
+  @override
+  Widget build(BuildContext context) {
+    return CheckBox(
+      value: isChecked,
+      getChbox: (value) {
+        setState(() {
+          isChecked = value;
+        });
+      },
     );
   }
 }

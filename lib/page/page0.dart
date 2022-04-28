@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../widget/common/Checkbox.dart';
+
+bool isChecked = false;
+
 class Page0 extends StatelessWidget {
   const Page0({Key? key}) : super(key: key);
 
