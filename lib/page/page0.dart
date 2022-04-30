@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widget/common/Checkbox.dart';
+import 'TEST.dart';
 
 bool isChecked = false;
 
@@ -9,7 +10,7 @@ class Page0 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Page0Body();
+    return testbutton();
   }
 }
 

@@ -21,7 +21,7 @@ class testbutton extends StatefulWidget {
 }
 
 class _testbuttonState extends State<testbutton> {
-  String test01 = '1';
+  late String test01 = '';
   @override
   Widget build(BuildContext context) {
     return Center(
