@@ -43,10 +43,6 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
         )
     ];
 
-    print("---------");
-    print(_showstr);
-    print("---------");
-
     return Container(
       width: widget.width,
       height: widget.height,
