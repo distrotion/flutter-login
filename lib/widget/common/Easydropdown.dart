@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../styles/TextStyle.dart';
+import 'ComSpace.dart';
+
 class EasyDropDown extends StatefulWidget {
   EasyDropDown({
     Key? key,
@@ -11,6 +14,7 @@ class EasyDropDown extends StatefulWidget {
     this.borderCO,
     this.borderRaio,
     this.imgpath,
+    this.sLabel = "",
   }) : super(key: key);
   List<String> listdropdown;
   Function onChangeinside;
@@ -20,6 +24,7 @@ class EasyDropDown extends StatefulWidget {
   Color? borderCO;
   double? borderRaio;
   String? imgpath;
+  final String sLabel;
 
   @override
   State<EasyDropDown> createState() => _EasyDropDownState();
@@ -29,8 +34,16 @@ class _EasyDropDownState extends State<EasyDropDown> {
   @override
   Widget build(BuildContext context) {
     String _img = widget.imgpath ?? '';
-    return Stack(
+    return Column(
       children: [
+        if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 8),
+        if (widget.sLabel.isNotEmpty)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(widget.sLabel,
+                style: TxtStyle(color: CustomTheme.colorGrey, fontSize: 10)),
+          ),
+        if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 4),
         Container(
           width: widget.width,
           height: widget.height,
