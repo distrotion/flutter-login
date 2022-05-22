@@ -8,12 +8,18 @@ class EasyDropDown extends StatefulWidget {
     required this.value,
     required this.width,
     required this.height,
+    this.borderCO,
+    this.borderRaio,
+    this.imgpath,
   }) : super(key: key);
   List<String> listdropdown;
   Function onChangeinside;
   String value;
   double width;
   double height;
+  Color? borderCO;
+  double? borderRaio;
+  String? imgpath;
 
   @override
   State<EasyDropDown> createState() => _EasyDropDownState();
@@ -22,13 +28,17 @@ class EasyDropDown extends StatefulWidget {
 class _EasyDropDownState extends State<EasyDropDown> {
   @override
   Widget build(BuildContext context) {
+    String _img = widget.imgpath ?? '';
     return Stack(
       children: [
         Container(
           width: widget.width,
           height: widget.height,
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+          decoration: BoxDecoration(
+            border: Border.all(color: widget.borderCO ?? Colors.blueAccent),
+            borderRadius:
+                BorderRadius.all(Radius.circular(widget.borderRaio ?? 8.0)),
+          ),
           child: DropdownButton<String>(
             isExpanded: true,
             // borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -38,6 +48,16 @@ class _EasyDropDownState extends State<EasyDropDown> {
             // icon: const Icon(Icons.arrow_downward),
             // iconSize: 24,
             // elevation: 16,
+            icon: _img != ''
+                ? Container(
+                    height: 24,
+                    width: 24,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(_img), fit: BoxFit.fitHeight),
+                    ),
+                  )
+                : null,
             style: const TextStyle(color: Colors.black),
             underline: Container(
               height: 2,

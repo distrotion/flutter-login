@@ -9,6 +9,9 @@ class AdvanceDropDown extends StatefulWidget {
     required this.width,
     required this.height,
     this.hint,
+    this.borderCO,
+    this.borderRaio,
+    this.imgpath,
   }) : super(key: key);
   List<MapEntry<String, String>>? listdropdown;
   Function onChangeinside;
@@ -16,6 +19,9 @@ class AdvanceDropDown extends StatefulWidget {
   double width;
   double height;
   String? hint;
+  Color? borderCO;
+  double? borderRaio;
+  String? imgpath;
 
   @override
   State<AdvanceDropDown> createState() => _AdvanceDropDownState();
@@ -42,11 +48,16 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
           child: Text(_listdropdown[i].key.toString()),
         )
     ];
+    String _img = widget.imgpath ?? '';
 
     return Container(
       width: widget.width,
       height: widget.height,
-      decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+      decoration: BoxDecoration(
+        border: Border.all(color: widget.borderCO ?? Colors.blueAccent),
+        borderRadius:
+            BorderRadius.all(Radius.circular(widget.borderRaio ?? 8.0)),
+      ),
       child: DropdownButton<String>(
         // borderRadius: BorderRadius.all(Radius.circular(10)),
         // disabledHint: Text("123"),
@@ -56,7 +67,17 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
         isExpanded: true,
         // iconDisabledColor: Colors.transparent,
         // iconEnabledColor: Colors.transparent,
-        // icon: const Icon(Icons.arrow_downward),
+
+        icon: _img != ''
+            ? Container(
+                height: 24,
+                width: 24,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(_img), fit: BoxFit.fitHeight),
+                ),
+              )
+            : null,
         // iconSize: 24,
         // elevation: 16,
 
