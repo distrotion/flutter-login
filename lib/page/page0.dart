@@ -12,8 +12,6 @@ class Page0 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ORIGINAL.name.str = '';
-    ORIGINAL.name.inte = 0;
     return Page0Body();
   }
 }
