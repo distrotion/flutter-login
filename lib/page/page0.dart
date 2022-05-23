@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/datapattern.dart';
 import '../widget/common/Checkbox.dart';
+import '../widget/common/Radiobutton.dart';
 import 'TEST.dart';
 
 bool isChecked = false;
@@ -22,14 +23,36 @@ class Page0Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       // child: Container(
       //     height: 100,
       //     width: 200,
       //     color: Colors.orange,
       //     child: const Center(
       //         child: Text("initial Page \nor do something wrong"))),
-      child: testbutton(),
+      child: radiotest(),
+    );
+  }
+}
+
+class radiotest extends StatefulWidget {
+  const radiotest({Key? key}) : super(key: key);
+
+  @override
+  State<radiotest> createState() => _radiotestState();
+}
+
+class _radiotestState extends State<radiotest> {
+  bool testradio = false;
+  @override
+  Widget build(BuildContext context) {
+    return Radiobutton(
+      value: testradio,
+      getdata: (input) {
+        setState(() {
+          testradio = input;
+        });
+      },
     );
   }
 }
