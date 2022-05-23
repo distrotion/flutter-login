@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/cubit/NotificationEvent.dart';
 import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
+import '../widget/common/Radiobutton.dart';
 import 'page0.dart';
 import '../data/global.dart';
 
@@ -268,6 +269,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class radiotest extends StatefulWidget {
+  const radiotest({Key? key}) : super(key: key);
+
+  @override
+  State<radiotest> createState() => _radiotestState();
+}
+
+class _radiotestState extends State<radiotest> {
+  bool testradio = false;
+  @override
+  Widget build(BuildContext context) {
+    return Radiobutton(
+      value: testradio,
+      getdata: (input) {
+        setState(() {
+          testradio = input;
+        });
+      },
     );
   }
 }
