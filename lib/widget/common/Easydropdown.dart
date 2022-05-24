@@ -52,42 +52,45 @@ class _EasyDropDownState extends State<EasyDropDown> {
             borderRadius:
                 BorderRadius.all(Radius.circular(widget.borderRaio ?? 8.0)),
           ),
-          child: DropdownButton<String>(
-            isExpanded: true,
-            // borderRadius: BorderRadius.all(Radius.circular(10)),
-            value: widget.value,
-            // iconDisabledColor: Colors.transparent,
-            // iconEnabledColor: Colors.transparent,
-            // icon: const Icon(Icons.arrow_downward),
-            // iconSize: 24,
-            // elevation: 16,
-            icon: _img != ''
-                ? Container(
-                    height: 24,
-                    width: 24,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(_img), fit: BoxFit.fitHeight),
-                    ),
-                  )
-                : null,
-            style: const TextStyle(color: Colors.black),
-            underline: Container(
-              height: 2,
-              color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
+            child: DropdownButton<String>(
+              isExpanded: true,
+              // borderRadius: BorderRadius.all(Radius.circular(10)),
+              value: widget.value,
+              // iconDisabledColor: Colors.transparent,
+              // iconEnabledColor: Colors.transparent,
+              // icon: const Icon(Icons.arrow_downward),
+              // iconSize: 24,
+              // elevation: 16,
+              icon: _img != ''
+                  ? Container(
+                      height: 24,
+                      width: 24,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(_img), fit: BoxFit.fitHeight),
+                      ),
+                    )
+                  : null,
+              style: const TextStyle(color: Colors.black),
+              underline: Container(
+                height: 2,
+                color: Colors.transparent,
+              ),
+              onChanged: (String? newValue) {
+                setState(() {
+                  widget.onChangeinside(newValue!);
+                });
+              },
+              items: widget.listdropdown
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                widget.onChangeinside(newValue!);
-              });
-            },
-            items: widget.listdropdown
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
           ),
         ),
       ],
