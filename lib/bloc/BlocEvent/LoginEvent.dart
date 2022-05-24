@@ -34,7 +34,7 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
     final SharedPreferences prefs = await _prefs;
     // token = (prefs.getString('token') ?? '');
     token = 'test';
-    UserLV = 2;
+    USERDATA.UserLV = 2;
 
     tokenSP = prefs.setString("tokenSP", token).then((bool success) {
       return state;
@@ -57,14 +57,14 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
   Future<void> _ReLogin_Function(String toAdd, Emitter<String> emit) async {
     final SharedPreferences prefs = await _prefs;
     token = (prefs.getString('tokenSP') ?? '');
-    UserLV = 2;
+    USERDATA.UserLV = 2;
     emit(token);
   }
 
   Future<void> _Logout_Function(String toAdd, Emitter<String> emit) async {
     final SharedPreferences prefs = await _prefs;
     token = '';
-    UserLV = 0;
+    USERDATA.UserLV = 0;
 
     tokenSP = prefs.setString("tokenSP", token).then((bool success) {
       return state;

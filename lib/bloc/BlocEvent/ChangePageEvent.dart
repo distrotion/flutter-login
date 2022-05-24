@@ -31,7 +31,7 @@ class ChangePage_Bloc extends Bloc<ChangePage_Event, Widget> {
     // MainBodyContext
     // MenuContext
 
-    if (UserLV >= CuPageLV) {
+    if (USERDATA.UserLV >= CuPageLV) {
     } else {
       CuPage = Page0();
     }
@@ -52,7 +52,7 @@ class ChangePage_Bloc extends Bloc<ChangePage_Event, Widget> {
     // MainBodyContext
     // MenuContext
 
-    if (UserLV >= CuPageLV) {
+    if (USERDATA.UserLV >= CuPageLV) {
     } else {
       CuPage = Page0();
     }
