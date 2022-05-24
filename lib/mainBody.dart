@@ -32,14 +32,16 @@ class MainBlocRebuild extends StatelessWidget {
                     child: BlocBuilder<BlocNotification, NotificationState>(
                       builder: (context, notification) {
                         contextGB = context;
-                        return Stack(
-                          children: [
-                            pre_login(),
-                            Positioned(
-                                top: 64,
-                                right: 24,
-                                child: BlocBuilderNotification()),
-                          ],
+                        return Scaffold(
+                          body: Stack(
+                            children: [
+                              pre_login(),
+                              Positioned(
+                                  top: 64,
+                                  right: 24,
+                                  child: BlocBuilderNotification()),
+                            ],
+                          ),
                         );
                       },
                     ));
