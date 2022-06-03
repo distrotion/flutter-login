@@ -4,9 +4,11 @@ import '../widget/common/Advancedropdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/cubit/NotificationEvent.dart';
+import '../widget/common/Calendarwid.dart';
 import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
 import '../widget/common/Radiobutton.dart';
+import '../widget/common/Timewid.dart';
 import 'page0.dart';
 import '../data/global.dart';
 
@@ -295,7 +297,73 @@ class _radiotestState extends State<radiotest> {
   }
 }
 
+DateTime calendaset = DateTime.now();
+String calendasetout = '';
 
+class CALENDARTEST extends StatefulWidget {
+  const CALENDARTEST({Key? key}) : super(key: key);
+
+  @override
+  State<CALENDARTEST> createState() => _CALENDARTESTState();
+}
+
+class _CALENDARTESTState extends State<CALENDARTEST> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        CalendaSelectDate(context, calendaset, (date) {
+          //
+          setState(() {
+            calendasetout = date;
+          });
+        });
+      },
+      child: Container(
+        height: 40,
+        width: 300,
+        color: Colors.red,
+        child: Center(
+          child: Text(calendasetout),
+        ),
+      ),
+    );
+  }
+}
+//
+
+TimeOfDay timeset = TimeOfDay.now();
+String timesetout = '';
+
+class TIMEPICKTEST extends StatefulWidget {
+  const TIMEPICKTEST({Key? key}) : super(key: key);
+
+  @override
+  State<TIMEPICKTEST> createState() => _TIMEPICKTESTState();
+}
+
+class _TIMEPICKTESTState extends State<TIMEPICKTEST> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        selectTime(context, timeset, (date) {
+          setState(() {
+            timesetout = date;
+          });
+        });
+      },
+      child: Container(
+        height: 40,
+        width: 300,
+        color: Colors.red,
+        child: Center(
+          child: Text(timesetout),
+        ),
+      ),
+    );
+  }
+}
 
 // class Page1BlocTableBody extends StatelessWidget {
 //   /// {@macro counter_page}
