@@ -32,7 +32,7 @@ class testbutton extends StatefulWidget {
 }
 
 class _testbuttonState extends State<testbutton> {
-  late String test01 = '';
+  String test01 = '1';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -48,10 +48,11 @@ class _testbuttonState extends State<testbutton> {
             MapEntry("TWO", "2"),
             MapEntry("THREE", "3"),
           ],
-          onChangeinside: (d) {
+          onChangeinside: (d, k) {
             setState(() {
               test01 = d;
               print(test01);
+              print(k);
             });
           },
           value: test01,

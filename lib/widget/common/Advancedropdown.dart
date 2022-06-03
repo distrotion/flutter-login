@@ -19,6 +19,7 @@ class AdvanceDropDown extends StatefulWidget {
   }) : super(key: key);
   List<MapEntry<String, String>>? listdropdown;
   Function onChangeinside;
+  Function? getkey;
   String value;
   double width;
   double height;
@@ -34,6 +35,7 @@ class AdvanceDropDown extends StatefulWidget {
 
 class _AdvanceDropDownState extends State<AdvanceDropDown> {
   String? _showstr;
+  String? _showstrKEY;
   @override
   Widget build(BuildContext context) {
     List<MapEntry<String, String>> _listdropdown =
@@ -45,6 +47,9 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
     ];
 
     List outputZ = [];
+    if (widget.value != '') {
+      _showstr = widget.value;
+    }
 
     List outputR = [
       for (int i = 0; i < _listdropdown.length; i++)
@@ -105,7 +110,7 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
               ),
               onChanged: (String? newValue) {
                 setState(() {
-                  widget.onChangeinside(newValue!);
+                  widget.onChangeinside(newValue!, _showstrKEY);
                   widget.value = newValue;
                   _showstr = newValue;
                 });
@@ -114,6 +119,11 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
               items: [
                 for (int i = 0; i < _listdropdown.length; i++)
                   DropdownMenuItem(
+                    onTap: () {
+                      setState(() {
+                        _showstrKEY = _listdropdown[i].key.toString();
+                      });
+                    },
                     value: _listdropdown[i].value,
                     child: Text(_listdropdown[i].key.toString()),
                   )
