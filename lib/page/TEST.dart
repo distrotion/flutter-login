@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import '../widget/common/Advancedropdown.dart';
 //---------------------------------------------------------
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:image/image.dart' as IMG;
 
 import '../bloc/cubit/NotificationEvent.dart';
 import '../widget/common/Calendarwid.dart';
@@ -9,6 +14,7 @@ import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
 import '../widget/common/Radiobutton.dart';
 import '../widget/common/Timewid.dart';
+import '../widget/common/imgset.dart';
 import 'page0.dart';
 import '../data/global.dart';
 
@@ -383,7 +389,6 @@ class _TIMEPICKTESTState extends State<TIMEPICKTEST> {
 //   }
 // }
 
-
 // Timer timer = new Timer(new Duration(seconds: 3), () {
 //   debugPrint("Print after 3 seconds");
 // });
@@ -394,3 +399,38 @@ class _TIMEPICKTESTState extends State<TIMEPICKTEST> {
 // context.read<PremixDataSetBloc>().add(GetDataPressed());
 
 // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
+
+String base64pic05 = imgw;
+
+class FileUploadButton05 extends StatefulWidget {
+  const FileUploadButton05({Key? key}) : super(key: key);
+
+  @override
+  State<FileUploadButton05> createState() => _FileUploadButton05State();
+}
+
+class _FileUploadButton05State extends State<FileUploadButton05> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 500,
+      width: 1000,
+      child: Row(
+        children: [
+          Expanded(flex: 1, child: PicShow(base64: base64pic05)),
+          Expanded(
+            flex: 1,
+            child: IMGbutton(
+              base64pic: base64pic05,
+              setimg: (img) {
+                setState(() {
+                  base64pic05 = img;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
