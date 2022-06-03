@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:tpk_login_v2/model/model.dart';
 import '../widget/common/Advancedropdown.dart';
 //---------------------------------------------------------
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -432,5 +434,153 @@ class _FileUploadButton05State extends State<FileUploadButton05> {
         ],
       ),
     );
+  }
+}
+
+class mainvartest {
+  static DATABODY test = DATABODY();
+}
+
+class testraiobuttest {
+  static int radio01 = 0;
+  static bool radio01_01 = false;
+  static bool radio01_02 = false;
+  static bool radio01_03 = false;
+  static bool radio01_04 = false;
+  static bool radio01_05 = false;
+}
+
+class raiobuttest extends StatefulWidget {
+  const raiobuttest({Key? key}) : super(key: key);
+
+  @override
+  State<raiobuttest> createState() => _raiobuttestState();
+}
+
+class _raiobuttestState extends State<raiobuttest> {
+  @override
+  Widget build(BuildContext context) {
+    clear01() {
+      setState(() {
+        //-------- update data
+        mainvartest.test.inte = testraiobuttest.radio01;
+        //--------
+        if (testraiobuttest.radio01 == 1) {
+          testraiobuttest.radio01_01 = true;
+          testraiobuttest.radio01_02 = false;
+          testraiobuttest.radio01_03 = false;
+          testraiobuttest.radio01_04 = false;
+          testraiobuttest.radio01_05 = false;
+        } else if (testraiobuttest.radio01 == 2) {
+          testraiobuttest.radio01_01 = false;
+          testraiobuttest.radio01_02 = true;
+          testraiobuttest.radio01_03 = false;
+          testraiobuttest.radio01_04 = false;
+          testraiobuttest.radio01_05 = false;
+        } else if (testraiobuttest.radio01 == 3) {
+          testraiobuttest.radio01_01 = false;
+          testraiobuttest.radio01_02 = false;
+          testraiobuttest.radio01_03 = true;
+          testraiobuttest.radio01_04 = false;
+          testraiobuttest.radio01_05 = false;
+        } else if (testraiobuttest.radio01 == 4) {
+          testraiobuttest.radio01_01 = false;
+          testraiobuttest.radio01_02 = false;
+          testraiobuttest.radio01_03 = false;
+          testraiobuttest.radio01_04 = true;
+          testraiobuttest.radio01_05 = false;
+        } else if (testraiobuttest.radio01 == 5) {
+          testraiobuttest.radio01_01 = false;
+          testraiobuttest.radio01_02 = false;
+          testraiobuttest.radio01_03 = false;
+          testraiobuttest.radio01_04 = false;
+          testraiobuttest.radio01_05 = true;
+        } else if (testraiobuttest.radio01 == 0) {
+          testraiobuttest.radio01_01 = false;
+          testraiobuttest.radio01_02 = false;
+          testraiobuttest.radio01_03 = false;
+          testraiobuttest.radio01_04 = false;
+          testraiobuttest.radio01_05 = false;
+        }
+      });
+    }
+
+    return SizedBox(
+        height: 500,
+        child: Column(
+          children: [
+            Radiobutton(
+              value: testraiobuttest.radio01_01,
+              getdata: (input) {
+                setState(() {
+                  // testraiobuttest.radio01_01 = input;
+                  //--------
+                  testraiobuttest.radio01 = 1;
+                  clear01();
+                  //--------
+                });
+              },
+            ),
+            Radiobutton(
+              value: testraiobuttest.radio01_02,
+              getdata: (input) {
+                setState(() {
+                  // testraiobuttest.radio01_02 = input;
+                  //--------
+                  testraiobuttest.radio01 = 2;
+                  clear01();
+                  //--------
+                });
+              },
+            ),
+            Radiobutton(
+              value: testraiobuttest.radio01_03,
+              getdata: (input) {
+                setState(() {
+                  // testraiobuttest.radio01_03 = input;
+                  //--------
+                  testraiobuttest.radio01 = 3;
+                  clear01();
+                  //--------
+                });
+              },
+            ),
+            Radiobutton(
+              value: testraiobuttest.radio01_04,
+              getdata: (input) {
+                setState(() {
+                  // testraiobuttest.radio01_04 = input;
+                  //--------
+                  testraiobuttest.radio01 = 4;
+                  clear01();
+                  //--------
+                });
+              },
+            ),
+            Radiobutton(
+              value: testraiobuttest.radio01_05,
+              getdata: (input) {
+                setState(() {
+                  // testraiobuttest.radio01_05 = input;
+                  //--------
+                  testraiobuttest.radio01 = 5;
+                  clear01();
+                  //--------
+                });
+              },
+            ),
+            InkWell(
+              onTap: () {
+                print(mainvartest.test.inte);
+              },
+              child: Container(
+                height: 50,
+                width: 100,
+                color: Colors.red,
+                child: Center(child: Text(mainvartest.test.inte.toString())),
+              ),
+            )
+          ],
+        ));
   }
 }
