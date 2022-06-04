@@ -1,16 +1,8 @@
-import 'dart:convert';
-import 'dart:html';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:tpk_login_v2/model/model.dart';
+import '../model/model.dart';
 import '../widget/common/Advancedropdown.dart';
 //---------------------------------------------------------
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:image/image.dart' as IMG;
 
-import '../bloc/cubit/NotificationEvent.dart';
 import '../widget/common/Calendarwid.dart';
 import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
@@ -18,7 +10,6 @@ import '../widget/common/Radiobutton.dart';
 import '../widget/common/Timewid.dart';
 import '../widget/common/imgset.dart';
 import 'page0.dart';
-import '../data/global.dart';
 
 //---------------------------------------------------------
 bool iscontext = false;

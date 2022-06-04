@@ -1,6 +1,6 @@
 {
-    "name": "tpk_login_v2",
-    "short_name": "tpk_login_v2",
+    "name": "flutter_master",
+    "short_name": "flutter_master",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
