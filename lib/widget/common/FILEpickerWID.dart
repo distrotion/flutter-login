@@ -59,7 +59,10 @@ Future<String> file64picker() async {
 }
 
 Future<String> file64pickerIMG() async {
-  var _picker = await FilePicker.platform.pickFiles();
+  var _picker = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: ['jpg', 'jpeg', 'svg', 'png'],
+  );
   Uint8List? imageByte;
   Uint8List? resizedData;
 

@@ -409,8 +409,8 @@ class FILEpicfunction extends StatelessWidget {
       child: Center(
           child: InkWell(
         onTap: () {
-          //
-          imgpickgallery().then((String result) {
+          //imgpickgallery().then((String result) {
+          file64picker().then((String result) {
             if (result != '') {
               print(result);
               // FILEpicl64 = result;
