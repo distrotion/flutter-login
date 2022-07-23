@@ -1,69 +1,20 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image/image.dart' as IMG;
+import 'package:image_picker/image_picker.dart';
 
-class PicShow extends StatefulWidget {
-  PicShow({Key? key, required this.base64, this.height, this.width})
-      : super(key: key);
-  String base64;
-  double? height;
-  double? width;
-  @override
-  State createState() => PicShowState();
-}
-
-class PicShowState extends State<PicShow> {
-  // String _base64 = base64pic01;
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.base64 == null) return new Container();
-    Uint8List bytes = base64.decode(widget.base64);
-    return SizedBox(
-      height: widget.height ?? 50,
-      width: widget.width ?? 50,
-      child: Image.memory(bytes),
-    );
+Future<String> imgpickgallery() async {
+  final ImagePicker _picker = ImagePicker();
+  final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  if (image != null) {
+    // print("---->");
+    // print(image.path);
+    // final bytes = File(image.path).readAsBytesSync();
+    // String img64 = base64Encode(bytes);
+    return image.path;
   }
-}
-
-class IMGbutton extends StatefulWidget {
-  IMGbutton({
-    Key? key,
-    required this.base64pic,
-    required this.setimg,
-  }) : super(key: key);
-  String base64pic;
-  Function setimg;
-  @override
-  State<IMGbutton> createState() => _IMGbuttonState();
-}
-
-class _IMGbuttonState extends State<IMGbutton> {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: const Text('UPLOAD IMG'),
-      onPressed: () async {
-        var picked = await FilePicker.platform.pickFiles();
-        Uint8List? imageByte;
-        Uint8List? resizedData;
-
-        if (picked != null) {
-          imageByte = picked.files.first.bytes;
-          IMG.Image? img = IMG.decodeImage(imageByte!);
-          // IMG.Image? img2 = IMG.copyResize(img!, width: 500);
-          resizedData = IMG.encodeJpg(img!) as Uint8List?;
-          setState(() {
-            widget.setimg(base64.encode(resizedData!));
-          });
-        }
-      },
-    );
-  }
+  return '';
 }
 
 String imgw =

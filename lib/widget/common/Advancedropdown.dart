@@ -12,21 +12,32 @@ class AdvanceDropDown extends StatefulWidget {
     required this.width,
     required this.height,
     this.hint,
-    this.borderCO,
     this.borderRaio,
     this.imgpath,
     this.sLabel = "",
+    this.borderCO,
+    this.BgCO,
+    this.sLabelCO,
+    this.sLabelFS,
+    this.startedge,
+    this.isEnable,
   }) : super(key: key);
   List<MapEntry<String, String>>? listdropdown;
-  Function onChangeinside;
+  Function(String, String) onChangeinside;
   Function? getkey;
   String value;
   double width;
   double height;
   String? hint;
   Color? borderCO;
+  Color? BgCO;
+  Color? sLabelCO;
+  double? sLabelFS;
   double? borderRaio;
+
+  double? startedge;
   String? imgpath;
+  bool? isEnable;
   final String sLabel;
 
   @override
@@ -43,7 +54,7 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
 
     //AdvanceDropDownOB(text: "DYNAMIC", value: "DYNAMIC-V")
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text(""), value: "")
+      const DropdownMenuItem(child: Text(""), value: "")
     ];
 
     List outputZ = [];
@@ -67,19 +78,25 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(widget.sLabel,
-                style: TxtStyle(color: CustomTheme.colorGrey, fontSize: 10)),
+                style: TxtStyle(
+                    color: widget.sLabelCO ?? CustomTheme.colorGrey,
+                    fontSize: widget.sLabelFS ?? 10)),
           ),
         if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 4),
         Container(
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
+            color: widget.isEnable ?? false
+                ? Colors.grey
+                : widget.BgCO ?? Colors.white,
             border: Border.all(color: widget.borderCO ?? Colors.blueAccent),
             borderRadius:
                 BorderRadius.all(Radius.circular(widget.borderRaio ?? 8.0)),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
+            padding: EdgeInsetsDirectional.only(
+                start: widget.startedge ?? 5, end: 5),
             child: DropdownButton<String>(
               // borderRadius: BorderRadius.all(Radius.circular(10)),
               // disabledHint: Text("123"),
@@ -108,13 +125,15 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
                 height: 2,
                 color: Colors.transparent,
               ),
-              onChanged: (String? newValue) {
-                setState(() {
-                  widget.onChangeinside(newValue!, _showstrKEY);
-                  widget.value = newValue;
-                  _showstr = newValue;
-                });
-              },
+              onChanged: widget.isEnable ?? false
+                  ? null
+                  : (String? newValue) {
+                      setState(() {
+                        widget.onChangeinside(newValue!, _showstrKEY!);
+                        widget.value = newValue;
+                        _showstr = newValue;
+                      });
+                    },
 
               items: [
                 for (int i = 0; i < _listdropdown.length; i++)

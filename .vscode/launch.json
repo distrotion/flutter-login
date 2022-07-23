@@ -4,16 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        // {
-        //     "name": "Flutter for web",
-        //     "type": "dart",
-        //     "request": "launch",
-        //     "program": "lib/main.dart",
-        //     "args": [
-        //       "-d",
-        //       "chrome"
-        //     ]
-        //   },
+        {
+            "name": "Flutter for web",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": [
+              "-d",
+              "chrome"
+            ]
+          },
         {
             "name": "flutter_master",
             "request": "launch",

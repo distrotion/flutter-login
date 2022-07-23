@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../bloc/cubit/Rebuild.dart';
+
+import '../../bloc/Cubit/Rebuild.dart';
 import '../../styles/TextStyle.dart';
 import 'ComSpace.dart';
 import 'LayoutAlignWithFullWidth.dart';
@@ -11,6 +12,7 @@ enum enumInputTextStateList {
   readOnly, //for dropdown. cannot input but not grey color
   disable, //grey color
 }
+
 enum enumInputBindList {
   none,
 }
@@ -41,7 +43,14 @@ class ComInputText extends StatefulWidget {
     this.width,
     this.iconheight,
     this.iconwidth,
+    this.isSideIcon,
+    //
+    this.borderR,
+    this.BgCO,
+    this.sLabelCO,
+    this.sLabelFS,
     required this.returnfunc,
+    this.maxline,
   }) : super(key: key);
 
   final String sValue; // value inside text
@@ -65,11 +74,18 @@ class ComInputText extends StatefulWidget {
   final Function? fnContr;
   Function returnfunc;
 
+  final bool? isSideIcon;
   final bool? isContr;
   final double? height;
   final double? width;
   final double? iconheight;
   final double? iconwidth;
+
+  int? maxline;
+  double? borderR;
+  Color? BgCO;
+  Color? sLabelCO;
+  double? sLabelFS;
 
   //state
   final enumInputTextStateList InputTextState;
@@ -217,6 +233,7 @@ class _ComInputTextState extends State<ComInputText> {
             child: Container(
               height: widget.iconheight ?? 24,
               width: widget.iconwidth ?? 24,
+
               // decoration: BoxDecoration(
               //     image: DecorationImage(
               //         image: AssetImage(getShowHidePassword_ImgPath()),
@@ -229,6 +246,23 @@ class _ComInputTextState extends State<ComInputText> {
           padding: const EdgeInsets.only(right: 12.0, left: 12, top: 8.0, bottom: 8.0),
           child: Container(height: 24, width: 24, decoration: BoxDecoration(image: DecorationImage(image: AssetImage(getCorrectIconEmail_ImgPath()), fit: BoxFit.fitHeight))),
         );*/
+      } else if (widget.isSideIcon ?? false) {
+        return InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.only(
+                right: 12.0, left: 12, top: 8.0, bottom: 8.0),
+            child: Container(
+              height: widget.iconheight ?? 24,
+              width: widget.iconwidth ?? 24,
+              child: const Icon(Icons.search),
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage(getShowHidePassword_ImgPath()),
+              //         fit: BoxFit.fitHeight)),
+            ),
+          ),
+        );
       } else {
         return null;
       }
@@ -261,10 +295,17 @@ class _ComInputTextState extends State<ComInputText> {
       bool _isEnabled = widget.isEnabled ?? true;
 
       return Container(
-        color: _isEnabled ? Colors.white : Colors.grey,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(widget.borderR ?? 0)),
+          color: _isEnabled ? widget.BgCO ?? Colors.white : Colors.grey,
+        ),
         height: widget.height ?? 32,
         width: widget.width ?? 100,
         child: TextFormField(
+          keyboardType: TextInputType.multiline,
+          // minLines: 1, //Normal textInputField will be displayed
+          // maxLines: widget.maxline ?? 1,
+          maxLines: widget.maxline ?? 1,
           controller: _controller,
           // onChanged:
           //     (widget.funcOnChange == null ? true : false) ? null : _onChange,
@@ -287,16 +328,17 @@ class _ComInputTextState extends State<ComInputText> {
           inputFormatters: [
             LengthLimitingTextInputFormatter(widget.nLimitedChar),
             if (widget.isNumberOnly == true)
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,5}')),
           ],
           decoration: InputDecoration(
             hintText: widget.sPlaceholder,
             hintStyle: TxtStyle(
-                fontSize: widget.nFontSize,
-                color: CustomTheme.colorGreyDisable),
+              fontSize: widget.nFontSize,
+              color: CustomTheme.colorGreyDisable,
+            ),
             border: const OutlineInputBorder(
                 // borderRadius:
-                //     const BorderRadius.all(const Radius.circular(8.0))
+                //     const BorderRadius.all(const Radius.circular(8.0)),
                 ),
             contentPadding:
                 const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0),
@@ -307,7 +349,7 @@ class _ComInputTextState extends State<ComInputText> {
             focusedBorder: OutlineInputBorder(
               borderSide:
                   BorderSide(width: 1, color: CustomTheme.colorGreyDisable),
-              // borderRadius: BorderRadius.circular(8)
+              // borderRadius: BorderRadius.circular(8),
             ),
             suffixIcon: wIconRightSide(),
           ),
@@ -379,7 +421,9 @@ class _ComInputTextState extends State<ComInputText> {
       if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 8),
       if (widget.sLabel.isNotEmpty)
         Text(widget.sLabel,
-            style: TxtStyle(color: CustomTheme.colorGrey, fontSize: 10)),
+            style: TxtStyle(
+                color: widget.sLabelCO ?? CustomTheme.colorGrey,
+                fontSize: widget.sLabelFS ?? 10)),
       if (widget.sLabel.isNotEmpty) const ComSpaceHeight(nHeight: 4),
       if (widget.InputTextState == enumInputTextStateList.inputText)
         wInputText(), //inputText, can show error

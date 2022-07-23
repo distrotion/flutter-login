@@ -6,9 +6,11 @@ import '../widget/common/Advancedropdown.dart';
 import '../widget/common/Calendarwid.dart';
 import '../widget/common/Checkbox.dart';
 import '../widget/common/ComInputText.dart';
+import '../widget/common/IMGpickerWID.dart';
+import '../widget/common/IMGviewWID.dart';
 import '../widget/common/Radiobutton.dart';
 import '../widget/common/Timewid.dart';
-import '../widget/common/imgset.dart';
+import '../widget/common/FILEpickerWID.dart';
 import 'page0.dart';
 
 //---------------------------------------------------------
@@ -394,6 +396,38 @@ class _TIMEPICKTESTState extends State<TIMEPICKTEST> {
 
 // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
 
+String FILEpicl64 = '';
+
+class FILEpicfunction extends StatelessWidget {
+  const FILEpicfunction({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 500,
+      width: 500,
+      child: Center(
+          child: InkWell(
+        onTap: () {
+          //
+          imgpickgallery().then((String result) {
+            if (result != '') {
+              print(result);
+              // FILEpicl64 = result;
+            }
+            // print(FILEpicl64);
+          });
+        },
+        child: Container(
+          height: 50,
+          width: 100,
+          color: Colors.red,
+        ),
+      )),
+    );
+  }
+}
+
 String base64pic05 = imgw;
 
 class FileUploadButton05 extends StatefulWidget {
@@ -414,7 +448,7 @@ class _FileUploadButton05State extends State<FileUploadButton05> {
           Expanded(flex: 1, child: PicShow(base64: base64pic05)),
           Expanded(
             flex: 1,
-            child: IMGbutton(
+            child: FileButton(
               base64pic: base64pic05,
               setimg: (img) {
                 setState(() {
