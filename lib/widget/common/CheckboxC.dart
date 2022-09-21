@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CheckBox extends StatefulWidget {
-  CheckBox({Key? key, required this.getChbox, required this.value})
+class CheckBoxC extends StatefulWidget {
+  CheckBoxC({Key? key, required this.getChbox, required this.value})
       : super(key: key);
-  Function? getChbox;
+  Function(bool)? getChbox;
   bool? value;
 
   @override
-  State<CheckBox> createState() => _CheckBoxState();
+  State<CheckBoxC> createState() => _CheckBoxCState();
 }
 
-class _CheckBoxState extends State<CheckBox> {
+class _CheckBoxCState extends State<CheckBoxC> {
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {

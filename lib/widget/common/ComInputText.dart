@@ -51,6 +51,7 @@ class ComInputText extends StatefulWidget {
     this.sLabelFS,
     required this.returnfunc,
     this.maxline,
+    this.keyboardtype,
   }) : super(key: key);
 
   final String sValue; // value inside text
@@ -86,6 +87,8 @@ class ComInputText extends StatefulWidget {
   Color? BgCO;
   Color? sLabelCO;
   double? sLabelFS;
+
+  TextInputType? keyboardtype;
 
   //state
   final enumInputTextStateList InputTextState;
@@ -233,6 +236,15 @@ class _ComInputTextState extends State<ComInputText> {
             child: Container(
               height: widget.iconheight ?? 24,
               width: widget.iconwidth ?? 24,
+              child: _isHidePassword == false
+                  ? const Icon(
+                      Icons.visibility,
+                      color: Colors.black,
+                    )
+                  : const Icon(
+                      Icons.visibility_off,
+                      color: Colors.black,
+                    ),
 
               // decoration: BoxDecoration(
               //     image: DecorationImage(
@@ -297,12 +309,12 @@ class _ComInputTextState extends State<ComInputText> {
       return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderR ?? 0)),
-          color: _isEnabled ? widget.BgCO ?? Colors.white : Colors.grey,
+          color: _isEnabled ? widget.BgCO ?? Colors.white : Color(0xffededed),
         ),
         height: widget.height ?? 32,
         width: widget.width ?? 100,
         child: TextFormField(
-          keyboardType: TextInputType.multiline,
+          keyboardType: widget.keyboardtype ?? TextInputType.multiline,
           // minLines: 1, //Normal textInputField will be displayed
           // maxLines: widget.maxline ?? 1,
           maxLines: widget.maxline ?? 1,

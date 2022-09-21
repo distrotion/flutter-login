@@ -23,7 +23,7 @@ class AdvanceDropDown extends StatefulWidget {
     this.isEnable,
   }) : super(key: key);
   List<MapEntry<String, String>>? listdropdown;
-  Function(String, String) onChangeinside;
+  Function onChangeinside;
   Function? getkey;
   String value;
   double width;
@@ -88,7 +88,7 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
           height: widget.height,
           decoration: BoxDecoration(
             color: widget.isEnable ?? false
-                ? Colors.grey
+                ? Color(0xffededed)
                 : widget.BgCO ?? Colors.white,
             border: Border.all(color: widget.borderCO ?? Colors.blueAccent),
             borderRadius:
@@ -129,7 +129,7 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
                   ? null
                   : (String? newValue) {
                       setState(() {
-                        widget.onChangeinside(newValue!, _showstrKEY!);
+                        widget.onChangeinside(newValue!, _showstrKEY);
                         widget.value = newValue;
                         _showstr = newValue;
                       });

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../data/datapattern.dart';
-import '../widget/common/Checkbox.dart';
-import '../widget/common/Radiobutton.dart';
 import 'TEST.dart';
 
 bool isChecked = false;

@@ -4,7 +4,7 @@ import '../widget/common/Advancedropdown.dart';
 //---------------------------------------------------------
 
 import '../widget/common/Calendarwid.dart';
-import '../widget/common/Checkbox.dart';
+import '../widget/common/CheckboxC.dart';
 import '../widget/common/ComInputText.dart';
 import '../widget/common/IMGpickerWID.dart';
 import '../widget/common/IMGviewWID.dart';
@@ -219,7 +219,7 @@ class CheckBoxTEST extends StatefulWidget {
 class _CheckBoxTESTState extends State<CheckBoxTEST> {
   @override
   Widget build(BuildContext context) {
-    return CheckBox(
+    return CheckBoxC(
       value: isChecked,
       getChbox: (value) {
         setState(() {
