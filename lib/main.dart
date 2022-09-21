@@ -1,3 +1,7 @@
+// import 'dart:io';
+// import 'package:flutter/services.dart';
+//---------------------------------------------
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +13,11 @@ import 'mainBody.dart';
 
 //--------------------------------------
 
-void main() {
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // ByteData data = await PlatformAssetBundle().load('assets/ca/mindmillo.pem');
+  // SecurityContext.defaultContext
+  //     .setTrustedCertificatesBytes(data.buffer.asInt8List());
   BlocOverrides.runZoned(
     () => runApp(const MyApp()),
     blocObserver: AppBlocObserver(),
