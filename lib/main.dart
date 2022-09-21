@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainContext extends StatelessWidget {
+class MainContext extends MyApp {
   const MainContext({Key? key}) : super(key: key);
 
   @override

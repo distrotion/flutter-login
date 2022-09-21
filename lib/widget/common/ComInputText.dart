@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../bloc/Cubit/Rebuild.dart';
 import '../../styles/TextStyle.dart';
 import 'ComSpace.dart';
 import 'LayoutAlignWithFullWidth.dart';
@@ -136,33 +133,16 @@ class _ComInputTextState extends State<ComInputText> {
     //focus ev for validation
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
-        // setState(() {
-
         _isError = !ValidationCurrentText(_controller.value.text);
         widget.fnContr!(false);
-        BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
-        //GlobalVar.isShowErrorOnAllInputTextField = false;//nothing diff but bug for dropdown
-        // GlobalVar.isForceShowErrorOnAllInputTextField_EvenValid = false;
+        setState(() {});
         _isHideIconOnFocus = false;
-        // });
       } else {
-        // setState(() {
         _isError = false; //clear when input again
         widget.fnContr!(false);
-        BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
-        //GlobalVar.isShowErrorOnAllInputTextField = false;//nothing diff but bug for dropdown
-        /*if (widget.isEmail) {
-            _isHideIconOnFocus = true;
-          }*/
-        // });
+        setState(() {});
       }
     });
-    //print("init " + widget.isShowError.toString());
-    /*if (widget.isShowError) {
-      _isError = true;
-      _isEmailShowIcon = true;
-    }*/
-    //show hide pass logic for password type
     if (!widget.isPassword) {
       _isHidePassword = false;
     }
@@ -170,7 +150,6 @@ class _ComInputTextState extends State<ComInputText> {
 
   @override
   void dispose() {
-    //print("dispose scrollController");
     _focusNode.dispose();
     _controller.dispose();
     super.dispose();
@@ -179,35 +158,18 @@ class _ComInputTextState extends State<ComInputText> {
   @override
   Widget build(BuildContext context) {
     if (widget.isForceShowError) {
-      // setState(() {
       if (widget.InputTextState == enumInputTextStateList.inputText) {
         _isError = !ValidationCurrentText(_controller.value.text);
-        BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
+        setState(() {});
       } else if (widget.InputTextState == enumInputTextStateList.readOnly) {
         _isError = !ValidationCurrentText(widget.sValue);
-        BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
+        setState(() {});
       }
-      //print(_isError);
-      // });
     }
-    /*if (widget.isForceShowError && GlobalVar.isShowErrorOnAllInputTextField) {
-      setState(() {
-        print("build " + widget.sValue);
-        if (widget.InputTextState == enumInputTextStateList.inputText) {
-          _isError = !ValidationCurrentText(_controller.value.text);
-        } else if (widget.InputTextState == enumInputTextStateList.readOnly) {
-          _isError = !ValidationCurrentText(widget.sValue);
-        }
-      });
-    }*/
-
-    //--------------------------------------------------------------------------------------------------------
 
     void showHidePassowrd() {
-      // setState(() {
       _isHidePassword = !_isHidePassword;
-      BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
-      // });
+      setState(() {});
     }
 
     String getCorrectIconEmail_ImgPath() {
@@ -233,7 +195,7 @@ class _ComInputTextState extends State<ComInputText> {
           child: Padding(
             padding: const EdgeInsets.only(
                 right: 12.0, left: 12, top: 8.0, bottom: 8.0),
-            child: Container(
+            child: SizedBox(
               height: widget.iconheight ?? 24,
               width: widget.iconwidth ?? 24,
               child: _isHidePassword == false
@@ -245,19 +207,9 @@ class _ComInputTextState extends State<ComInputText> {
                       Icons.visibility_off,
                       color: Colors.black,
                     ),
-
-              // decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         image: AssetImage(getShowHidePassword_ImgPath()),
-              //         fit: BoxFit.fitHeight)),
             ),
           ),
         );
-        /*} else if (widget.isEmail && !_isHideIconOnFocus) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 12.0, left: 12, top: 8.0, bottom: 8.0),
-          child: Container(height: 24, width: 24, decoration: BoxDecoration(image: DecorationImage(image: AssetImage(getCorrectIconEmail_ImgPath()), fit: BoxFit.fitHeight))),
-        );*/
       } else if (widget.isSideIcon ?? false) {
         return InkWell(
           onTap: () {},
@@ -268,10 +220,6 @@ class _ComInputTextState extends State<ComInputText> {
               height: widget.iconheight ?? 24,
               width: widget.iconwidth ?? 24,
               child: const Icon(Icons.search),
-              // decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         image: AssetImage(getShowHidePassword_ImgPath()),
-              //         fit: BoxFit.fitHeight)),
             ),
           ),
         );
@@ -315,27 +263,15 @@ class _ComInputTextState extends State<ComInputText> {
         width: widget.width ?? 100,
         child: TextFormField(
           keyboardType: widget.keyboardtype ?? TextInputType.multiline,
-          // minLines: 1, //Normal textInputField will be displayed
-          // maxLines: widget.maxline ?? 1,
           maxLines: widget.maxline ?? 1,
           controller: _controller,
-          // onChanged:
-          //     (widget.funcOnChange == null ? true : false) ? null : _onChange,
           onChanged: (s) {
             widget.returnfunc(s);
-            // BlocProvider.of<BlocPageRebuild>(context).rebuildPage();
-            // print(s);
           },
-          // onSaved: (s) {
-          //   widget.returnfunc(s);
-          // },
           focusNode: _focusNode,
           cursorColor: CustomTheme.colorGrey,
           obscureText: _isHidePassword,
           enabled: _isEnabled,
-          //keyboardType: TextInputType.emailAddress,
-
-          //autofillHints: [AutofillHints.username],//!app crash
           style: TxtStyle(fontSize: widget.nFontSize),
           inputFormatters: [
             LengthLimitingTextInputFormatter(widget.nLimitedChar),

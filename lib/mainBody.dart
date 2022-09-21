@@ -22,33 +22,41 @@ class MainBlocRebuild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
-      return BlocProvider(
-          create: (_) => Login_Bloc(),
-          child: BlocBuilder<Login_Bloc, String>(
-            builder: (context, tokenin) {
-              return BlocBuilder<BlocPageRebuild, bool>(builder: (_, e) {
-                return BlocProvider(
-                    create: (_) => BlocNotification(),
-                    child: BlocBuilder<BlocNotification, NotificationState>(
-                      builder: (context, notification) {
-                        contextGB = context;
-                        return Scaffold(
-                          body: Stack(
-                            children: [
-                              pre_login(),
-                              Positioned(
-                                  top: 64,
-                                  right: 24,
-                                  child: BlocBuilderNotification()),
-                            ],
-                          ),
-                        );
-                      },
-                    ));
-              });
-            },
-          ));
+      return MainbodyBuffer();
     });
+  }
+}
+
+class MainbodyBuffer extends MainBlocRebuild {
+  const MainbodyBuffer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (_) => Login_Bloc(),
+        child: BlocBuilder<Login_Bloc, String>(
+          builder: (context, tokenin) {
+            return BlocProvider(
+                create: (_) => BlocNotification(),
+                child: BlocBuilder<BlocNotification, NotificationState>(
+                  builder: (context, notification) {
+                    contextGB = context;
+                    return Scaffold(
+                      body: Stack(
+                        children: [
+                          pre_login(),
+                          Positioned(
+                            top: 64,
+                            right: 24,
+                            child: BlocBuilderNotification(),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ));
+          },
+        ));
   }
 }
 
@@ -64,7 +72,6 @@ class _pre_loginState extends State<pre_login> {
   void initState() {
     super.initState();
     context.read<Login_Bloc>().add(ReLogin());
-    // print("initState");
   }
 
   @override

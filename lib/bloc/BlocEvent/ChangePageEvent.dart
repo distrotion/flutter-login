@@ -5,8 +5,7 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../page/page0.dart';
 import '../../widget/menu/mainmenu.dart';
-import '../Cubit/NotificationEvent.dart';
-
+import '../cubit/NotificationEvent.dart';
 //-------------------------------------------------
 
 abstract class ChangePage_Event {}
@@ -25,43 +24,30 @@ class ChangePage_Bloc extends Bloc<ChangePage_Event, Widget> {
     });
   }
   Future<void> _ChangePage_Function(Widget toAdd, Emitter<Widget> emit) async {
-    // print('${CuPage}');
-
     Widget output = Page0();
-    // MainBodyContext
-    // MenuContext
 
     if (USERDATA.UserLV >= CuPageLV) {
     } else {
       CuPage = Page0();
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+          "Error", "No have permission", enumNotificationlist.Error);
     }
 
-    //   // BlocProvider.of<BlocNotification>(contextGB)
-    //   //     .UpdateNotification("", "Error", enumNotificationlist.Error);
-
     Navigator.pop(MenuContext);
-    // print(output);
     emit(CuPage);
   }
 
   Future<void> _ChangePage_Function_no_drower(
       Widget toAdd, Emitter<Widget> emit) async {
-    // print('${CuPage}');
-
     Widget output = Page0();
-    // MainBodyContext
-    // MenuContext
 
     if (USERDATA.UserLV >= CuPageLV) {
     } else {
       CuPage = Page0();
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+          "Error", "No have permission", enumNotificationlist.Error);
     }
 
-    //   // BlocProvider.of<BlocNotification>(contextGB)
-    //   //     .UpdateNotification("", "Error", enumNotificationlist.Error);
-
-    // Navigator.pop(MenuContext);
-    // print(output);
     emit(CuPage);
   }
 }

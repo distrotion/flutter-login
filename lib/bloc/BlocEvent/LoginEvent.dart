@@ -48,9 +48,6 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
           "user or password have some problem", enumNotificationlist.Error);
     }
 
-    // BlocProvider.of<Notification_Bloc>(contextGB)
-    //   .UpdateNotification("", "Login OK", enumNotificationlist.Success);
-
     emit(token);
   }
 
