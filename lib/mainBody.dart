@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/BlocEvent/ChangePageEvent.dart';
+import 'bloc/Cubit/ChangePageEventCUBIT.dart';
 import 'bloc/BlocEvent/LoginEvent.dart';
 import 'bloc/cubit/NotificationEvent.dart';
 import 'bloc/cubit/Rebuild.dart';

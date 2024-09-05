@@ -46,7 +46,7 @@ class ComBtnBlack extends StatelessWidget {
       height: nHeight,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: c,
+          // primary: c,
           shape: StadiumBorder(),
         ),
         onPressed: !_isEnable ? null : tapFunc,
